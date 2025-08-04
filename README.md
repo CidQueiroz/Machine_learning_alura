@@ -116,10 +116,10 @@ A capacidade de prever o churn com alta precisão permite que a Telecom X direci
 
 ## 📬 Contato
 
-Dúvidas ou sugestões? Abra uma [issue](https://github.com/seuusuario/seurepositorio/issues) ou entre em contato!
+Dúvidas ou sugestões? Abra uma [issue](https://github.com/CidQueiroz/Machine_learning_alura/issues) ou entre em contato!
 
 ---
 
 <p align="center">
-  <img src="https://img.shields.io/badge/feito%20com-❤%20por%20ONE%20e%20Alura-blue" alt="Feito com amor por ONE e Alura"/>
+  <img src="https://img.shields.io/badge/feito%20com-❤%20por%20Queiroz-blue" alt="Feito com amor por ONE e Alura"/>
 </p>
