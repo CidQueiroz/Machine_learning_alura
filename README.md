@@ -1,107 +1,125 @@
-# Análise de Churn da Telecom X: Do Dado à Predição
+# 📊 Análise Preditiva de Churn para a Telecom X
 
-## 1. Sobre o Projeto
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)](https://jupyter.org/)
+[![Status](https://img.shields.io/badge/status-Concluído-brightgreen)]()
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Este projeto foi desenvolvido como parte do **Challenge de Machine Learning da Alura**, em parceria com a **Oracle (ONE)**. O objetivo é construir um pipeline completo de Machine Learning para prever a evasão de clientes (churn) da empresa fictícia **Telecom X**. A solução abrange desde a preparação dos dados até o treinamento, avaliação e implantação de modelos preditivos, com foco em gerar insights estratégicos para a tomada de decisão.
+---
 
-O modelo final, baseado em **Random Forest**, alcançou uma **acurácia de aproximadamente 79%**, demonstrando ser uma ferramenta eficaz para identificar clientes com alto risco de cancelamento.
+## 📚 Sumário
 
-## 2. Estrutura do Repositório
+- [Visão Geral do Projeto](#visão-geral-do-projeto)
+- [Estrutura do Repositório](#estrutura-do-repositório)
+- [Metodologia Aplicada](#metodologia-aplicada)
+- [Fatores-Chave de Churn](#fatores-chave-de-churn)
+- [Como Executar o Notebook](#como-executar-o-notebook)
+- [Recomendações Estratégicas](#recomendações-estratégicas)
+- [Conclusão](#conclusão)
 
-O projeto está organizado em uma sequência de scripts Python que representam cada etapa do pipeline de Machine Learning:
+---
 
-```
+## 🚀 Visão Geral do Projeto
+
+Este repositório contém a solução completa para o **Challenge de Machine Learning da Alura em parceria com a Oracle (ONE)**. O desafio consistiu em desenvolver um sistema de previsão de evasão de clientes (churn) para a **Telecom X**, uma empresa fictícia do setor de telecomunicações.
+
+O projeto abrange todo o ciclo de vida de um projeto de Machine Learning, desde a análise e preparação dos dados até o treinamento, avaliação de modelos e a criação de um pipeline de inferência. O resultado é um modelo preditivo robusto, com **acurácia de 79%**, capaz de identificar clientes com alta probabilidade de cancelamento, fornecendo à empresa uma ferramenta estratégica para campanhas de retenção.
+
+---
+
+## 🗂️ Estrutura do Repositório
+
+```text
 /TelecomX_BR_2
 │
-├── 01_data_preparation.py      # Carrega, limpa e transforma os dados brutos (JSON -> CSV).
-├── 02_feature_engineering.py   # Aplica One-Hot Encoding e escalonamento nas features.
-├── 03_model_training.py        # Treina e avalia os modelos (Regressão Logística e Random Forest).
-├── 04_ml_pipeline.py           # Consolida o pré-processamento e o modelo em um pipeline e o salva.
-│
-├── random_forest_pipeline.pkl  # Pipeline final treinado e salvo, pronto para predições.
-│
 ├── data/
-│   ├── TelecomX_Data.json      # Dados brutos originais.
-│   └── telecom_data_tratado.csv # Dados limpos e pré-processados.
+│   ├── TelecomX_Data.json        # Dados brutos fornecidos no desafio
+│   └── telecom_data_tratado.csv  # Dados processados
 │
 ├── notebooks/
-│   └── TelecomX_BR_2_Completo.ipynb # Notebook com a análise exploratória e desenvolvimento.
+│   └── TelecomX_BR_2_Completo.ipynb # Notebook original com EDA e desenvolvimento
 │
-└── README.md                   # Este arquivo.
+└── README.md                     # Documentação do projeto
 ```
 
-## 3. Metodologia
+---
 
-O fluxo de trabalho seguiu as melhores práticas de ciência de dados, dividido nas seguintes etapas:
+## 🧠 Metodologia Aplicada
 
-1.  **Preparação dos Dados**: Os dados foram carregados de um arquivo JSON, normalizados para um formato tabular, e submetidos a um processo de limpeza que incluiu:
-    *   Tratamento de valores numéricos incorretos.
-    *   Remoção de registros com dados de churn ausentes.
-    *   Conversão da variável alvo (`Churn`) para formato binário (0 ou 1).
-    *   Padronização de valores categóricos inconsistentes.
+O desenvolvimento seguiu uma abordagem estruturada, dividida em quatro etapas principais:
 
-2.  **Engenharia de Features**: As variáveis foram preparadas para a modelagem por meio de:
-    *   **One-Hot Encoding**: Transformação de variáveis categóricas em formato numérico para que o modelo possa interpretá-las.
-    *   **Escalonamento**: Normalização das variáveis numéricas (`tenure`, `MonthlyCharges`, `TotalCharges`) com `StandardScaler` para que tivessem a mesma escala de magnitude.
+1. **Preparação dos Dados**  
+   - Carga dos dados em JSON  
+   - Limpeza de inconsistências, correção de tipos e remoção de registros incompletos
 
-3.  **Treinamento e Avaliação de Modelos**: Foram implementados e comparados dois algoritmos de classificação:
-    *   **Regressão Logística**: Um modelo linear simples e interpretável, utilizado como baseline.
-    *   **Random Forest**: Um modelo de ensemble mais robusto, que apresentou melhor performance e permitiu a análise de importância das variáveis.
+2. **Engenharia de Features**  
+   - Conversão de variáveis categóricas via **One-Hot Encoding**
+   - Normalização de variáveis numéricas com **StandardScaler**
 
-4.  **Criação do Pipeline**: A etapa final consolidou o pré-processamento e o modelo Random Forest em um único objeto `Pipeline` do Scikit-learn. Isso simplifica o fluxo de trabalho e garante que os mesmos passos de transformação sejam aplicados de forma consistente em novos dados.
+3. **Treinamento e Avaliação**  
+   - Modelos: **Regressão Logística** (baseline) e **Random Forest** (final)
+   - Avaliação: acurácia, precision, recall, F1-score e matriz de confusão
 
-## 4. Principais Fatores de Churn Identificados
+4. **Construção do Pipeline**  
+   - Pipeline do Scikit-learn integrando pré-processamento e modelo
+   - Pronto para uso em produção e predições em tempo real
 
-A análise de importância de features do modelo Random Forest revelou os principais fatores que influenciam a decisão de um cliente cancelar o serviço. Em ordem de importância, são eles:
+---
 
-1.  **Tipo de Contrato (`Contract`)**: Clientes com contratos mensais (`Month-to-month`) são, de longe, os mais propensos a sair. A ausência de uma multa contratual representa uma baixa barreira para o cancelamento.
-2.  **Fidelidade (`tenure`)**: Clientes com poucos meses de serviço estão em um "período crítico". A probabilidade de churn diminui drasticamente à medida que o cliente permanece mais tempo na empresa.
-3.  **Serviço de Internet (`InternetService_Fiber optic`)**: Clientes com serviço de Fibra Ótica apresentam uma taxa de churn mais elevada. Isso pode indicar problemas na oferta, como preço percebido como alto, instabilidade técnica ou concorrência agressiva.
-4.  **Forma de Pagamento (`PaymentMethod_Electronic check`)**: Clientes que utilizam boleto eletrônico, que exige uma ação manual mensal, tendem a cancelar mais do que aqueles com métodos de pagamento automáticos.
+## 🔑 Fatores-Chave de Churn
 
-## 5. Como Executar o Projeto
+A análise de importância de features revelou os principais indicadores de churn:
 
-Para replicar a análise e treinar o modelo, siga os passos abaixo.
+- **Tipo de Contrato (`Contract`)**: Contratos mensais são o principal fator de risco.
+- **Tempo de Contrato (`tenure`)**: Clientes com baixo tempo de casa têm maior probabilidade de churn.
+- **Serviço de Internet (`InternetService_Fiber optic`)**: Fibra ótica está associada a churn mais alto, sugerindo possíveis problemas de expectativa vs. realidade.
 
-### Pré-requisitos
+---
 
-- Python 3.x
-- Bibliotecas: `pandas`, `scikit-learn`, `matplotlib`, `seaborn`, `joblib`
+## 💻 Como Executar o Notebook
 
-Você pode instalar as dependências com:
-```bash
-pip install pandas scikit-learn matplotlib seaborn joblib
-```
+### ⚙️ Pré-requisitos
 
-### Executando o Pipeline
+- Python 3.8 ou superior
+- Jupyter Notebook ou JupyterLab
+- Instale as dependências:
+  
+  ```bash
+  pip install pandas scikit-learn matplotlib seaborn joblib
+  ```
 
-Os scripts foram projetados para serem executados em sequência. Abra um terminal no diretório do projeto e execute os comandos na ordem:
+### ▶️ Execução
 
-```bash
-# 1. Prepara os dados (JSON -> CSV)
-python 01_data_preparation.py
+1. Abra o arquivo [`notebooks/TelecomX_BR_2_Completo.ipynb`](notebooks/TelecomX_BR_2_Completo.ipynb) no Jupyter Notebook ou JupyterLab.
+2. Execute as células sequencialmente para reproduzir toda a análise, desde a preparação dos dados até a geração dos insights e recomendações.
 
-# 2. Cria as features para a modelagem
-python 02_feature_engineering.py
+> 💡 **Dica:** Você pode executar o notebook online pelo [Google Colab](https://colab.research.google.com/) arrastando o arquivo `.ipynb` para a plataforma.
 
-# 3. Treina e avalia os modelos (opcional, para análise)
-python 03_model_training.py
+---
 
-# 4. Cria e salva o pipeline final de ML
-python 04_ml_pipeline.py
-```
+## 💡 Recomendações Estratégicas
 
-Ao final da execução, o arquivo `random_forest_pipeline.pkl` será gerado, contendo o modelo treinado e pronto para ser usado em predições.
+Os insights do modelo permitem à Telecom X adotar uma postura proativa na retenção de clientes:
 
-## 6. Recomendações Estratégicas
+- 🎯 **Foco em Contratos de Longo Prazo**: Incentivar a migração de clientes de planos mensais para contratos anuais ou bianuais, oferecendo benefícios claros.
+- 🤝 **Programa de Onboarding para Novos Clientes**: Criar uma jornada de boas-vindas para garantir uma experiência positiva nos primeiros meses.
+- 🔍 **Análise da Oferta de Fibra Ótica**: Investigar as causas da alta taxa de churn entre clientes de fibra, avaliando preços, qualidade e suporte.
 
-Com base nos resultados, as seguintes ações são recomendadas para a Telecom X:
+---
 
-- **Ação para Contratos Mensais (Maior Impacto)**: Criar campanhas proativas para migrar clientes de planos mensais para anuais, oferecendo descontos ou benefícios.
-- **Ação para Novos Clientes (Retenção Inicial)**: Implementar um programa de "Onboarding de Sucesso" nos primeiros 3 meses para garantir uma boa experiência inicial.
-- **Ação para Clientes de Fibra Ótica (Investigação Crítica)**: Realizar uma análise aprofundada para entender a causa do churn neste segmento (preço, qualidade, suporte ou concorrência).
-- **Ação para Forma de Pagamento**: Incentivar a adesão ao débito automático, oferecendo pequenos descontos na fatura.
+## 🏁 Conclusão
 
-## 7. Conclusão
+Este projeto entrega não apenas um modelo de Machine Learning, mas uma solução de ponta a ponta que traduz dados brutos em inteligência de negócio.  
+A capacidade de prever o churn com alta precisão permite que a Telecom X direcione seus recursos de forma mais eficiente, maximize a retenção de clientes e aumente sua receita e competitividade no mercado.
 
-Este projeto demonstra o poder do Machine Learning não apenas para prever resultados, but para fornecer um mapa claro de onde os esforços de negócio devem ser concentrados. A implementação das estratégias recomendadas tem o potencial de reduzir significativamente a evasão de clientes e fortalecer o relacionamento da Telecom X com sua base de clientes.
+---
+
+## 📬 Contato
+
+Dúvidas ou sugestões? Abra uma [issue](https://github.com/seuusuario/seurepositorio/issues) ou entre em contato!
+
+---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/feito%20com-❤%20por%20ONE%20e%20Alura-blue" alt="Feito com amor por ONE e Alura"/>
+</p>
