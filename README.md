@@ -118,6 +118,10 @@ A capacidade de prever o churn com alta precisão permite que a Telecom X direci
 
 Dúvidas ou sugestões? Abra uma [issue](https://github.com/CidQueiroz/Machine_learning_alura/issues) ou entre em contato!
 
+- [![LinkedIn](https://img.shields.io/badge/LinkedIn-ciddy--queiroz-blue?logo=linkedin)](https://www.linkedin.com/in/ciddy-queiroz/)
+
+- [![Email](https://img.shields.io/badge/Email-cydy.queiroz@gmail.com-red?style=flat-square&logo=gmail&logoColor=white)](mailto:cydy.queiroz@gmail.com)
+
 ---
 
 <p align="center">
